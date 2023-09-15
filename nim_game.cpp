@@ -1,5 +1,5 @@
 #include "std_lib_facilities.h"
-#include <unistd.h>
+//#include <unistd.h>
 int p[9]={3,4,5,0,0,0,0,0,0};
 int pp[9]={3,4,5,0,0,0,0,0,0};
 int comp();
@@ -24,7 +24,7 @@ int comp(){
         for(int i=0;i<10;++i){
         if (p[i]>0){
             p[i]-=1;
-            cout<<"Уменьшает число предметов в ряду "<<i+1<<" на "<<1<<endl;
+            cout<<"Reduces the number of items in a row  "<<i+1<<" by "<<1<<endl;
             return 0;
             
         }
@@ -40,7 +40,7 @@ int comp(){
                 how_win=p[0]^p[1]^p[2]^p[3]^p[4]^p[5]^p[6]^p[7]^p[8];
                 
                 if( how_win==0){
-                    cout<<"Уменьшает число предметов в ряду "<<i+1<<" на "<<x<<endl;
+                    cout<<"Reduces the number of items in a row  "<<i+1<<" by "<<x<<endl;
                     return 0;
 
 
@@ -59,7 +59,7 @@ void comp_tern(){
     comp();
     
     if(summ(p)==0){
-        cout<<"Your oponent win\n Если хочешь сыграть еще, введи 1, если хочешь попасть в меню, введи 2"<<endl;
+        cout<<"Your oponent win\n If you want to play more, enter 1, if you want to get to the menu, enter 2"<<endl;
         for(int i=0;i<10;++i){
             p[i]=pp[i];
         }
@@ -72,7 +72,7 @@ void comp_tern(){
             menu();
         }
         else{
-            cout<<"Простите вы ввели что то неподходящее по формату. Перенаправляем вас в меню"<<endl;
+            cout<<"I'm sorry, you've entered something that is not in the correct format. We're redirecting you to the menu"<<endl;
             menu();
             
         }
@@ -86,9 +86,9 @@ void you_tern(){
     cout<<"Your tern"<<endl;
     for(int i=0;i<9;++i){
         if (p[i]>0)
-        cout<<"Кoличество предметов в "<<i+1<<" ряду = "<<p[i]<<endl;
+        cout<<"The number of items in the  "<<i+1<<" row = "<<p[i]<<endl;
     }
-    cout<<"Чтобы убрать предметы из рядав, ведите через сначала номер ряда, затем число предметов, которое вы хотите из него убрать"<<endl;
+    cout<<"To remove items from a row, lead through first the row number, then the number of items you want to remove from the row"<<endl;
     int a,b;
     cin>>a>>b;
     if(p[a-1]-b>=0  && a>0 && a<10 ){
@@ -97,7 +97,7 @@ void you_tern(){
         
     
         if(summ(p)==0){
-            cout<<"You win\n Если хочешь сыграть еще, введи 1, если хочешь попасть в меню, введи 2"<<endl;
+            cout<<"You win\n If you want to play more, enter 1, if you want to get to the menu, enter 2"<<endl;
             for(int i=0;i<10;++i){
             p[i]=pp[i];
         }
@@ -110,7 +110,7 @@ void you_tern(){
                 menu();
             }
             else{
-                cout<<"Простите вы ввели что то неподходящее по формату. Перенаправляем вас в меню"<<endl;
+                cout<<"I'm sorry, you've entered something that is not in the correct format. We're redirecting you to the menu"<<endl;
                 menu();
             
         }
@@ -120,7 +120,7 @@ void you_tern(){
 
     }
     else{
-        cout<<"Простите вы ввели что то неподходящее по формату. Попробуйте еще раз"<<endl;
+        cout<<"I'm sorry, you entered something that is not in the correct format. Try again."<<endl;
         you_tern();
 
     }
@@ -130,7 +130,7 @@ void you_tern(){
 void game(){
     for(int i=0;i<9;++i){
         if (p[i]>0)
-        cout<<"Изначальное кoличество предметов в "<<i+1<<" ряду = "<<p[i]<<endl;
+        cout<<"The initial number of items in the "<<i+1<<" row = "<<p[i]<<endl;
     }
     srand(time(0));
     int who1=rand()%2+1;
@@ -157,7 +157,7 @@ int menu(){
     if(numr==1){
         game();
     }
-    cout<<"Простите вы ввели что то неподходящее по формату. Попробуйте еще раз"<<endl;
+    cout<<"I'm sorry, you entered something that is not in the correct format. Try again."<<endl;
     menu();
     
     
@@ -166,10 +166,10 @@ int menu(){
 int settings(){
     int a,b;
     a=b=0;
-    cout<<"Вы можете настроить количество  предметов в каждом ряду.\n Для этого введите сначала номер ряда, затем число предметов, которое вы хотите видеть в этом ряду\n Если вы хотите выйти в меню, введите 0 enter 0 enter"<<endl;
+    cout<<"You can customize the number of items in each row.\n To do this, first enter the row number, then the number of items you want to see in that row\n If you want to exit the menu, enter 0 enter 0 enter."<<endl;
 
     for(int i=0;i<9;++i){
-        cout<<"Кoличество предметов в "<<i+1<<" Ряду = "<<p[i]<<"\n";
+        cout<<"Number of items in the "<<i+1<<" row = "<<p[i]<<"\n";
     }
     cin>>a>>b;
     if ((a==0)&&(b==0)){
@@ -179,7 +179,7 @@ int settings(){
         cout<<"No....";
         settings();
     }
-    if(a>0 && a<10 and b>-1){
+    if(a>0 && a<10 && b>-1){
         p[a-1]=b;
         pp[a-1]=b;
         settings();
@@ -187,7 +187,7 @@ int settings(){
 
     
     else{
-        cout<<"Простите вы ввели что то неподходящее по формату. Попробуйте еще раз"<<endl;
+        cout<<"I'm sorry, you entered something that is not in the correct format. Try again."<<endl;
         settings();
 
     }
