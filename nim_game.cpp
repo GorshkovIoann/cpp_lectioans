@@ -1,29 +1,29 @@
 #include "std_lib_facilities.h"
 //#include <unistd.h>
-int p[9]={3,4,5,0,0,0,0,0,0};
-int pp[9]={3,4,5,0,0,0,0,0,0};
+int box[9]={3,4,5,0,0,0,0,0,0};
+int copy_box[9]={3,4,5,0,0,0,0,0,0};
 int comp();
-int summ(int p[]);
+int summ(int box[]);
 void comp_tern();
 void you_tern();
 void game();
 int menu();
 int settings();
 int who_win=-1;
-int summ(int p[]){
+int summ(int box[]){
     int sm=0;
     for(int i=0;i<9;i++){
-        sm+=p[i];
+        sm+=box[i];
     }
     return sm;
 }
 
 int comp(){
-    who_win=p[0]^p[1]^p[2]^p[3]^p[4]^p[5]^p[6]^p[7]^p[8];
+    who_win=box[0]^box[1]^box[2]^box[3]^box[4]^box[5]^box[6]^box[7]^box[8];
     if (who_win==0){
         for(int i=0;i<10;++i){
-        if (p[i]>0){
-            p[i]-=1;
+        if (box[i]>0){
+            box[i]-=1;
             cout<<"Reduces the number of items in a row  "<<i+1<<" by "<<1<<endl;
             return 0;
             
@@ -34,10 +34,10 @@ int comp(){
     }
     int how_win=-1;
     for(int i=0;i<10;++i){
-        if (p[i]>0){
-            for(int x=1;x<=p[i];++x){
-                p[i]-=x;
-                how_win=p[0]^p[1]^p[2]^p[3]^p[4]^p[5]^p[6]^p[7]^p[8];
+        if (box[i]>0){
+            for(int x=1;x<=box[i];++x){
+                box[i]-=x;
+                how_win=box[0]^box[1]^box[2]^box[3]^box[4]^box[5]^box[6]^box[7]^box[8];
                 
                 if( how_win==0){
                     cout<<"Reduces the number of items in a row  "<<i+1<<" by "<<x<<endl;
@@ -46,7 +46,7 @@ int comp(){
 
 
                 }
-                p[i]+=x;
+                box[i]+=x;
                 
             }
 
@@ -58,10 +58,10 @@ void comp_tern(){
     cout<<"Enemy's tern"<<endl;
     comp();
     
-    if(summ(p)==0){
+    if(summ(box)==0){
         cout<<"Your oponent win\n If you want to play more, enter 1, if you want to get to the menu, enter 2"<<endl;
         for(int i=0;i<10;++i){
-            p[i]=pp[i];
+            box[i]=copy_box[i];
         }
         int a=0;
         cin>>a;
@@ -85,21 +85,21 @@ void comp_tern(){
 void you_tern(){
     cout<<"Your tern"<<endl;
     for(int i=0;i<9;++i){
-        if (p[i]>0)
-        cout<<"The number of items in the  "<<i+1<<" row = "<<p[i]<<endl;
+        if (box[i]>0)
+        cout<<"The number of items in the  "<<i+1<<" row = "<<box[i]<<endl;
     }
     cout<<"To remove items from a row, lead through first the row number, then the number of items you want to remove from the row"<<endl;
     int a,b;
     cin>>a>>b;
-    if(p[a-1]-b>=0  && a>0 && a<10 ){
-        p[a-1]-=b;
+    if(box[a-1]-b>=0  && a>0 && a<10 ){
+        box[a-1]-=b;
         
         
     
-        if(summ(p)==0){
+        if(summ(box)==0){
             cout<<"You win\n If you want to play more, enter 1, if you want to get to the menu, enter 2"<<endl;
             for(int i=0;i<10;++i){
-            p[i]=pp[i];
+            box[i]=copy_box[i];
         }
             int a=0;
             cin>>a;
@@ -129,8 +129,8 @@ void you_tern(){
 }
 void game(){
     for(int i=0;i<9;++i){
-        if (p[i]>0)
-        cout<<"The initial number of items in the "<<i+1<<" row = "<<p[i]<<endl;
+        if (box[i]>0)
+        cout<<"The initial number of items in the "<<i+1<<" row = "<<box[i]<<endl;
     }
     srand(time(0));
     int who1=rand()%2+1;
@@ -144,7 +144,7 @@ void game(){
     }
 }
 int menu(){
-    string main_menu = "        Hello, player\n You are welcome to the game NIM\nYou should to be ready: your opponent really strong\n For start game print 1 + enter\n For options print 2 + enter\n For exit print 3 + enter\n";
+    string main_menu = "        Hello, player\n You are welcome to the game NIM\nYou should to be ready: your ocopy_boxonent really strong\n For start game print 1 + enter\n For options print 2 + enter\n For exit print 3 + enter\n";
     cout<<main_menu;
     int numr;
     cin>> numr;
@@ -169,19 +169,19 @@ int settings(){
     cout<<"You can customize the number of items in each row.\n To do this, first enter the row number, then the number of items you want to see in that row\n If you want to exit the menu, enter 0 enter 0 enter."<<endl;
 
     for(int i=0;i<9;++i){
-        cout<<"Number of items in the "<<i+1<<" row = "<<p[i]<<"\n";
+        cout<<"Number of items in the "<<i+1<<" row = "<<box[i]<<"\n";
     }
     cin>>a>>b;
     if ((a==0)&&(b==0)){
         menu();
     }
-    if (summ(p)==0){
+    if (summ(box)==0){
         cout<<"No....";
         settings();
     }
     if(a>0 && a<10 && b>-1){
-        p[a-1]=b;
-        pp[a-1]=b;
+        box[a-1]=b;
+        copy_box[a-1]=b;
         settings();
     }
 
