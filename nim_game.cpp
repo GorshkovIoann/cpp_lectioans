@@ -1,7 +1,7 @@
 #include "std_lib_facilities.h"
-//#include <unistd.h>
-int box[9]={3,4,5,0,0,0,0,0,0};
-int copy_box[9]={3,4,5,0,0,0,0,0,0};
+constexpr int box_sise = 9;
+int box[box_sise]={3,4,5,0,0,0,0,0,0};
+int copy_box[box_sise]={3,4,5,0,0,0,0,0,0};
 int comp();
 int summ(int box[]);
 void comp_tern();
@@ -24,7 +24,7 @@ int comp(){
         for(int i=0;i<10;++i){
         if (box[i]>0){
             box[i]-=1;
-            cout<<"Reduces the number of items in a row  "<<i+1<<" by "<<1<<endl;
+            cout<<"Reduces the number of items in a row  "<<i+1<<" by "<< 1 <<endl;
             return 0;
             
         }
@@ -143,6 +143,14 @@ void game(){
         comp_tern();
     }
 }
+
+enum{
+    EnExit = 1,
+    EnGame,
+    EnSettings
+
+};
+
 int menu(){
     string main_menu = "        Hello, player\n You are welcome to the game NIM\nYou should to be ready: your ocopy_boxonent really strong\n For start game print 1 + enter\n For options print 2 + enter\n For exit print 3 + enter\n";
     cout<<main_menu;
